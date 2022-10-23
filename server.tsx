@@ -18,7 +18,7 @@ import { fetchRequestHandler } from "@trpc/server/adapters/fetch";
 import { appRouter } from "./src/server/router.ts";
 
 import { trpc } from "./src/trpc/trpc.ts";
-import { trpcClient } from "./src/trpc/client.ts";
+import { trpcClient } from "./src/trpc/server.ts";
 
 const server = await createServer({
   importMapPath: Deno.env.get("ULTRA_MODE") === "development"
