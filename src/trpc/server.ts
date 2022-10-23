@@ -8,12 +8,14 @@ const customLink: TRPCLink<AppRouter> = () => {
     const caller = appRouter.createCaller(op.context);
 
     return observable((observer) => {
-      // @ts-ignore whatever
-      const promise = caller.query(op.path, op.input, { context: op.context });
+      // @ts-ignore would need a better way of calling since this is deprecated
+      const promise = caller.query(op.path, op.input);
 
       promise.then((data) => {
         observer.next({ result: { data } });
         observer.complete();
+      }).catch((error) => {
+        observer.error(error);
       });
     });
   };
